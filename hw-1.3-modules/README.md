@@ -1,6 +1,10 @@
 # Super tiny console game: guess my number
 
- ### To game:
+### To install:
+
+$ npm i ria-guess-number -g
+
+### To game:
 
 $ guess-number
 
