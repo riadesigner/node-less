@@ -6,7 +6,6 @@ const args = yargs(process.argv.slice(2)).argv
 const msgNoVars = "Дайте параметры";
 const msgNeedMoreParams = "Нужно больше параметров";
 
-
 if(args._.length>0 && args._.includes('current')){
     (args.y || args.year) && show_current_year();
     (args.m || args.month) && show_current_month();
