@@ -31,6 +31,7 @@ yargs(hideBin(process.argv))
                     console.log(chalk.red(`файл с именем ${fileName} не найден`))
                 }else{
                     fs.readFile(p,'utf-8',(err,content)=>{
+                        if(err) throw new Error(err)
                         console.log(chalk.green(content))
                     })
                 }
