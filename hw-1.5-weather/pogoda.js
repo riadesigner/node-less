@@ -1,8 +1,6 @@
 require("dotenv").config()
-const chalk = require('chalk')
+
 const http = require('http')
-
-
 const yargs = require('yargs/yargs')
 const {hideBin} = require('yargs/helpers')
 const chalk = require('chalk')
@@ -15,6 +13,17 @@ if(!choosen_city){
 
 const APIWeatherKey = process.env.APIWeatherKey;
 const url = `http://api.weatherstack.com/current?access_key=${APIWeatherKey}&query=${encodeURI(choosen_city)}`;
+
+const fn = {
+    parse_and_show:(parseData)=>{
+        let p = parseData;
+        console.log(chalk.blue(`${p.location.name}, ${p.location.region}`))
+        console.log(chalk.green(`${p.location.localtime.split(' ')[1]}`))
+        console.log(`temperature: ${chalk.yellow(p.current.temperature)}, feels like: ${chalk.yellow(p.current.feelslike)}`)
+        console.log(`wind speed: ${chalk.yellow(p.current.wind_speed)}`)
+        console.log(`today: ${chalk.inverse(p.current.weather_descriptions)}`)
+    }
+}
 
 http.get(url,(res)=>{
     const {statusCode} = res;
@@ -30,8 +39,9 @@ http.get(url,(res)=>{
     
     res.on('end', () => {
         let parseData = JSON.parse(rowData)
-        console.log(parseData)
+        fn.parse_and_show(parseData)
     })
+
 
 }).on('error', (err) => {
     console.error(err)
