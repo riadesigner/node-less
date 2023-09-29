@@ -1,18 +1,19 @@
-const uuid = require('uuid')
+const {v4:uuid} = require('uuid')
 
 class Book{
     constructor(opt){
-        this.id = uuid();                
+        this.id = uuid(); // string                
         this.update(opt)
         return this;
     } 
     update(opt){
-        this.title = opt.title || "";
-        this.description = opt.description || "";
-        this.authors = opt.authors || "";
-        this.favorite = opt.favorite || "";
-        this.fileCover = opt.fileCover || "";
-        this.fileName = opt.fileName || "";        
+        this.title = opt.title || ""; // string
+        this.description = opt.description || ""; // string
+        this.authors = opt.authors || ""; // string
+        this.favorite = opt.favorite; // bool
+        this.fileCover = opt.fileCover || ""; // string
+        this.fileName = opt.fileName || ""; // string        
+        this.fileBook = opt.fileBook || ""; // string        
         return this;
     }
 }
