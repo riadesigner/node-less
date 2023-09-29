@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const store = require('../store')
 
-router.put('/',(req,res)=>{
+router.put('/:id',(req,res)=>{
     const {books} = store
     const {id} = req.params
     const {title,description,authors,favorite,fileCover,fileName} = req.body

@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 const store = require('../store')
 
-router.get('/',(req,res)=>{    
+router.get('/:id',(req,res)=>{    
     const {books} = store
     const {id} = req.params
     const idx = books.findIndex(el=>el.id===id)
+    console.log(`book id = ${id}`)
     if(idx!==-1){
         res.json(books[idx])
     }else{

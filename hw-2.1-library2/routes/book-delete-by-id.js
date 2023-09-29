@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const store = require('../store')
 
-router.delete('/',(req,res)=>{
+router.delete('/:id',(req,res)=>{
     const {books} = store
     const {id} = req.params
     const idx = books.findIndex(el=>el.id===id)

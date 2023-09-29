@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const store = require('../store')
-const Book = require('../book.js')
+const Book = require('../bookClass.js')
 
 router.post('/',(req,res)=>{
     const {books} = store
