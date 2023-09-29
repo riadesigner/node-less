@@ -32,8 +32,8 @@ app.use('/api/books',bookUpdateByIdRoute)
 app.use('/api/books',bookUploadCoverByIdRoute)
 
 app.use('/api/books',bookUploadByIdRoute)
-
 app.use('/api/books',bookDownloadCoverByIdRoute)
+
 app.use('/api/user/login',loginRoute)
 
 app.use('/',indexRoute)
