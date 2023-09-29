@@ -1,43 +1,48 @@
 require("dotenv").config()
 const express = require('express')
 
-
 const PORT = process.env.PORT || 3001
 
+// ----------------
+//    MIDDLEWARE
+// ---------------- 
 const logger = require('./middleware/logger')
 
-const booksGetAllRoute = require('./routes/books-get-all') 
-const bookAddNewRoute = require('./routes/book-add-new')
-const bookGetByIdRoute = require('./routes/book-get-by-id')
-const bookDeleteByIdRoute = require('./routes/book-delete-by-id') 
-const bookUpdateByIdRoute = require('./routes/book-update-by-id') 
-const bookDownloadCoverByIdRoute = require('./routes/book-download-cover-by-id') 
+// ------------
+//    ROUTES
+// ------------ 
+const r_booksGetAll = require('./routes/books-get-all') 
+const r_bookAddNew = require('./routes/book-add-new')
+const r_bookGetById = require('./routes/book-get-by-id')
+const r_bookDeleteById = require('./routes/book-delete-by-id') 
+const r_bookUpdateById = require('./routes/book-update-by-id') 
+const r_bookDownloadCoverById = require('./routes/book-download-cover-by-id') 
+const r_bookUploadCoverById = require('./routes/book-upload-cover-by-id') 
+const r_bookUploadById = require('./routes/book-upload-by-id') 
 
-const bookUploadCoverByIdRoute = require('./routes/book-upload-cover-by-id') 
-const bookUploadByIdRoute = require('./routes/book-upload-by-id') 
+const r_loginRoute = require('./routes/login') 
+const r_index = require('./routes/index') 
+const r_error= require('./routes/err-404') 
 
-const loginRoute = require('./routes/login') 
-const indexRoute = require('./routes/index') 
-const errorRoute= require('./routes/err-404') 
-
+// ------------
+//    SERVER
+// ------------ 
 const app = express()
 app.use(express.json())
 
 app.use('/',logger)
-app.use('/api/books',booksGetAllRoute)
-app.use('/api/books',bookAddNewRoute)
-app.use('/api/books',bookGetByIdRoute)
-app.use('/api/books',bookDeleteByIdRoute)
-app.use('/api/books',bookUpdateByIdRoute)
-app.use('/api/books',bookUploadCoverByIdRoute)
+app.use('/api/books',r_booksGetAll)
+app.use('/api/books',r_bookAddNew)
+app.use('/api/books',r_bookGetById)
+app.use('/api/books',r_bookDeleteById)
+app.use('/api/books',r_bookUpdateById)
+app.use('/api/books',r_bookUploadCoverById)
+app.use('/api/books',r_bookUploadById)
+app.use('/api/books',r_bookDownloadCoverById)
 
-app.use('/api/books',bookUploadByIdRoute)
-app.use('/api/books',bookDownloadCoverByIdRoute)
-
-app.use('/api/user/login',loginRoute)
-
-app.use('/',indexRoute)
-app.use(errorRoute)
+app.use('/api/user/login',r_loginRoute)
+app.use('/',r_index)
+app.use(r_error)
 
 
 app.listen(PORT,()=>{
