@@ -19,7 +19,7 @@ router.get('/:id/download',(req,res)=>{
         }
     }else{
         res.status(404)
-        res.json('404 | книга не найдена')
+        res.redirect('/404')
     }
 })
 

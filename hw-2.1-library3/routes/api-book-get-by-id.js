@@ -6,12 +6,13 @@ router.get('/:id',(req,res)=>{
     const {books} = store
     const {id} = req.params
     const idx = books.findIndex(el=>el.id===id)
+    const title = "Просмотр книги: "
     console.log(`book id = ${id}`)
     if(idx!==-1){
-        res.json(books[idx])
+        res.render('book/view',{title:title,book:books[idx]})
     }else{
         res.status(404)
-        res.json('404 | книга не найдена')
+        res.redirect('/404')
     }
 })
 
