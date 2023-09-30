@@ -34,7 +34,7 @@ const r_error= require('./middleware/err-404')
 // ------------ 
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.urlencoded({ extended: true }))
 
 app.use('/',logger)
 
