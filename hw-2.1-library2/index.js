@@ -1,5 +1,7 @@
 require("dotenv").config()
+
 const express = require('express')
+const path = require('path')
 
 const PORT = process.env.PORT || 3001
 
@@ -16,7 +18,7 @@ const r_bookAddNew = require('./routes/book-add-new')
 const r_bookGetById = require('./routes/book-get-by-id')
 const r_bookDeleteById = require('./routes/book-delete-by-id') 
 const r_bookUpdateById = require('./routes/book-update-by-id') 
-const r_bookDownloadCoverById = require('./routes/book-download-cover-by-id') 
+const r_bookDownloadById = require('./routes/book-download-by-id') 
 const r_bookUploadCoverById = require('./routes/book-upload-cover-by-id') 
 const r_bookUploadById = require('./routes/book-upload-by-id') 
 
@@ -38,11 +40,16 @@ app.use('/api/books',r_bookDeleteById)
 app.use('/api/books',r_bookUpdateById)
 app.use('/api/books',r_bookUploadCoverById)
 app.use('/api/books',r_bookUploadById)
-app.use('/api/books',r_bookDownloadCoverById)
+app.use('/api/books',r_bookDownloadById)
+
+
+const public_path = path.join(__dirname+'/public')
+app.use('/public',express.static(public_path))
 
 app.use('/api/user/login',r_loginRoute)
 app.use('/',r_index)
 app.use(r_error)
+
 
 
 app.listen(PORT,()=>{
