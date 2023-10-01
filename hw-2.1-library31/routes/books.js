@@ -85,8 +85,9 @@ router.get('/books/:id/download',(req,res)=>{
         if(books[idx].fileBook){
             const bookPath = path.join(__dirname,'..',books[idx].fileBook);
             console.log(`bookPath=${bookPath}`)
-            res.status(200)        
-            res.sendFile(bookPath)
+            res.status(200)            
+            const filename = `Книга-${id}.txt`;
+            res.download(bookPath, filename)
         }else{
             res.status(200)
             res.json('у книги пока нет файла')            
