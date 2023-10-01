@@ -2,16 +2,21 @@
 
 the homework project – _trying restful api_
 
+## API'S
+
+- app.use('/api',api_books) // BOOKS API
+- app.use('/api',api_user) // USER API
+
 ## READY ROUTES
 
-- /api/books (get all book), GET
-- /api/books/:id (add new book), POST / GET (UI)
-- /api/books/:id (get book by id), GET
-- /api/books/:id (delete book by id), DELETE
-- /api/books/:id (update book by id), POST / GET (UI)
-- /api/books/:id/upload-cover (update book-cover by id), POST
-- /api/books/:id/upload (update book-file by id), POST
-- /api/books/:id/download (download book-file by id), GET
+/api/books (get all book), GET
+/api/books/:id (add new book), POST / GET (UI)
+/api/books/:id (get book by id), GET
+/api/books/:id (delete book by id), DELETE
+/api/books/:id (update book by id), POST / GET (UI)
+/api/books/:id/upload-cover (update book-cover by id), POST
+/api/books/:id/upload (update book-file by id), POST
+/api/books/:id/download (download book-file by id), GET
 
 - /api/user/login (enter valid user), GET
 - / (index), GET
