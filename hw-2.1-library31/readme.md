@@ -7,7 +7,7 @@ the homework project – _trying restful api_
 - app.use('/api',api_books) // BOOKS API
 - app.use('/api',api_user) // USER API
 
-## READY ROUTES
+## BOOKS API ROUTES
 
 /api/books (get all book), GET
 /api/books/:id (add new book), POST / GET (UI)
@@ -17,10 +17,6 @@ the homework project – _trying restful api_
 /api/books/:id/upload-cover (update book-cover by id), POST
 /api/books/:id/upload (update book-file by id), POST
 /api/books/:id/download (download book-file by id), GET
-
-- /api/user/login (enter valid user), GET
-- / (index), GET
-- /? (404 | unknown page), GET
 
 ## BOOK VIEWS
 
