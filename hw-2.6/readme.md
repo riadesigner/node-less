@@ -12,21 +12,23 @@ db.createCollection("mybooks");
 
 db.mybooks.insertMany([
     {
+        id:1, 
         title: "bookname 1",
         description: "some description 1",
         authors: "author 1"
     },
     {
-    title: "bookname 2",
-    description: "some description 2",
-    authors: "author 2"
+        id:2,
+        title: "bookname 2",
+        description: "some description 2",
+        authors: "author 2"
     }    
 ]);
 
 db.mybooks.find({title:'bookname 1'})
     
 db.mybooks.updateOne(
-        { id: "1" },
+        { id: "_id" },
         { $set : { description:'new description', authors:'some new author'} }
     );
 
