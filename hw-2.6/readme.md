@@ -28,7 +28,7 @@ db.mybooks.insertMany([
 db.mybooks.find({title:'bookname 1'})
     
 db.mybooks.updateOne(
-        { id: "_id" },
+        { _id: "_id" },
         { $set : { description:'new description', authors:'some new author'} }
     );
 
