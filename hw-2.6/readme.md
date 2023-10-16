@@ -24,7 +24,6 @@ db.mybooks.insertMany([
 ]);
 
 db.mybooks.find({title:'bookname 1'})
-
     
 db.mybooks.updateOne(
         { id: "1" },
