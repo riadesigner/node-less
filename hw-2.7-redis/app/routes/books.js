@@ -4,6 +4,7 @@ const path = require('path')
 const fileMulter = require('../middleware/file-book')
 const fileMulterCover = require('../middleware/file-book-cover')
 const BookModel = require('../models/book');
+var request = require('request');
 
 // ---------------
 //    SHOW ALL
@@ -52,14 +53,35 @@ router.get('/books/create',(req,res)=>{
 router.get('/books/:id',async (req,res)=>{       
     const title = "Просмотр книги: "
     const {id} = req.params
+
+    let viewsCount = 0;
+
+    let counter_url = process.env.COUNTER_URL;    
     try{
-        const book = await BookModel.findById(id);        
-        res.render('book/view',{title:title,book:book});
-    }catch(e){        
-        console.log(`not found book, err: ${e}`);
+        const options = {
+            uri: `${counter_url}/counter/${id}/incr`,
+            method: 'POST',
+            headers: {'content-type' : 'application/json'},
+            json: true,
+            body:{}
+            };                       
+            request(options, async(error, result, body) =>{
+                if (!error && result.statusCode == 200) {
+                    viewsCount = body.total;
+                    console.log("viewsCount!!!",viewsCount)
+                    const book = await BookModel.findById(id);        
+                    res.render('book/view',{title:title,book:book, viewsCount:viewsCount});
+
+                }else{
+                    throw new Error('cant update count of book views');
+                }
+            });   
+    }catch(e){
+        console.log(e)
         res.status(404);
-        res.redirect('/404');
-        }
+        res.redirect('/404');        
+    }
+          
 })
 
 

@@ -17,10 +17,10 @@ app.get("/counter/:bookId",async (req,res)=>{
     if(bookId){
         let count = await client.get(bookId);
         res.status(200)
-        res.send(`всего просмотров книги – ${count}`)
+        res.json({total:count});
     }else{
         res.status(404)
-        res.send("page not found")
+        res.json({error:true});
     }
 })
 
@@ -29,18 +29,18 @@ app.post("/counter/:bookId/incr",async (req,res)=>{
     if(bookId){
         let count = await client.incr(bookId);
         res.status(200)
-        res.send(`всего просмотров книги – ${count}`)
+        res.json({total:count});
     }else{
         res.status(404)
-        res.send("page not found")
+        res.json({error:true});
     }
 })
 
 app.use((req,res)=>{        
         res.status(404)
-        res.send("page not found")
+        res.json({error:true});
     })
 
 app.listen(PORT,()=>{
-    console.log(`hi from ${PORT}`)
+    console.log(`hi from ${PORT}, I am books counter!`)
 })
