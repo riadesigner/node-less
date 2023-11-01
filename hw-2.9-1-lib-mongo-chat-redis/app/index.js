@@ -39,6 +39,33 @@ const error= require('./middleware/err-404')
 const app = express()
 app.set('view engine','ejs')
 
+
+const http = require('http');
+const socketIO = require('socket.io');
+
+const server = http.Server(app);
+const io = socketIO(server);
+
+io.on('connection', (socket) => {
+    const {id} = socket;
+    console.log(`Socket connected: ${id}`);
+    
+    const {roomName} = socket.handshake.query;
+    console.log(socket.handshake.query)
+    console.log(`Socket roomName: ${roomName}`);
+    socket.join(roomName);
+    socket.on('message-to-room', (msg) => {
+        msg.type = `room: ${roomName}`;
+        socket.to(roomName).emit('message-to-room', msg);
+        socket.emit('message-to-room', msg);
+    });
+
+    socket.on('disconnect', () => {
+        console.log(`Socket disconnected: ${id}`);
+    });
+});    
+
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/public',express.static(PUBLIC_PATH))
@@ -52,8 +79,8 @@ app.use(error)
 // ------------
 //    START APP
 // ------------  
-app.listen(PORT,()=>{    
-    console.log("ok! from post!", PORT);
+server.listen(PORT,()=>{    
+    console.log("Hi! from post!", PORT);
     console.log("MONGO_URL",MONGO_URL);
 })
 

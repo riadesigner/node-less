@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon -L"
+    "dev": "npx nodemon -L"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "express": "^4.18.2",
     "mongoose": "^7.6.3",
     "multer": "^1.4.5-lts.1",
+    "request": "^2.88.2",
     "socket.io": "^4.7.2",
     "uuid": "^9.0.1"
   },

@@ -5,57 +5,6 @@ const fileMulter = require('../middleware/file-book')
 const fileMulterCover = require('../middleware/file-book-cover')
 const BookModel = require('../models/book');
 
-// ----------------
-//  SOCKET.IO
-// ----------------
-const http = require('http');
-const socketIO = require('socket.io');
-
-// const server = http.Server(app);
-// const io = socketIO(server);
-
-// NODE
-// const server = require('http').createServer()
-// const options = {}
-// const io = require('socket.io')(server, options)
-// io.on('connection', socket => {})
-
-// EXPRESS
-// const app = require('express')()
-// const server = require('http').createServer(app)
-// const io = require('socket.io')(server)
-
-
-// io.on('connection', (socket) => {
-//     const {id} = socket;
-//     console.log(`Socket connected: ${id}`);
-
-//     // работа с комнатами
-//     const {roomName} = socket.handshake.query;
-//     console.log(socket.handshake.query)
-//     console.log(`Socket roomName: ${roomName}`);
-//     socket.join(roomName);
-//     socket.on('message-to-room', (msg) => {
-//         msg.type = `room: ${roomName}`;
-//         socket.to(roomName).emit('message-to-room', msg);
-//         socket.emit('message-to-room', msg);
-//     });
-
-//     socket.on('disconnect', () => {
-//         console.log(`Socket disconnected: ${id}`);
-//     });
-// });
-
-// const PORT = process.env.PORT || 3000;
-// server.listen(PORT,(err)=>{
-//     console.log(`listerning ${PORT} now`);
-// });
-
-// ----------------
-//  END SOCKET.IO
-// ----------------
-
-
 // ---------------
 //  SHOW ALL
 // ---------------
